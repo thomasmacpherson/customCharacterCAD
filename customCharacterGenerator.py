@@ -72,8 +72,9 @@ def enter(event):
 
 def printCharacter(event):
 	update()
+	print ("")
 	for line in character:
-		print(bin(line))
+		print("{},".format(format(line,'#07b')))
 	update()
 
 listener = pifacecad.SwitchEventListener(cad)
