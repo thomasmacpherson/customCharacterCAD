@@ -20,6 +20,16 @@ posY = 0
 # def refresh():
 	# cad.lcd.store_custom_bitmap(0,bitmap)
 
+def reset(event):
+	global posX, posY
+	posX = 0 
+	posY = 0
+	for i, x in enumerate(character):
+		character[i] = 0b00000
+	update()
+
+
+
 def update():
 	global posX, posY
 	character[posY] = character[posY]^bitmasks[posX]
@@ -27,8 +37,7 @@ def update():
 	cad.lcd.store_custom_bitmap(0,bitmap)
 
 def invert(event):
-	posX = 5
-	for i in range(0,8):
+	for i, x in enumerate(character):
 		character[i] = character[i]^bitmasks[5]
 	bitmap = pifacecad.LCDBitmap(character)
 	cad.lcd.store_custom_bitmap(0,bitmap)
@@ -75,6 +84,7 @@ listener.register(2, pifacecad.IODIR_FALLING_EDGE, up)
 listener.register(3, pifacecad.IODIR_FALLING_EDGE, right)
 listener.register(5, pifacecad.IODIR_FALLING_EDGE, printCharacter)
 listener.register(6, pifacecad.IODIR_FALLING_EDGE, invert)
+listener.register(7, pifacecad.IODIR_FALLING_EDGE, reset)
 listener.activate()
 
 
