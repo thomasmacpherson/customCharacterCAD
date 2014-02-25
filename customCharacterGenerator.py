@@ -1,5 +1,8 @@
 import pifacecad
-
+import sys
+if sys.version[0] != '3':
+	print ("customeCharacterGenerator must be ran with python3")
+	sys.exit(0)
 character = [0b10000,0b00000,0b00000,0b00000,0b00000,0b00000,0b00000,0b00000]
 bitmasks = [0b10000,0b01000,0b00100,0b00010,0b00001,0b11111]
 
